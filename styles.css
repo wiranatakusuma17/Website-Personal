@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Rodin';
+    src: url('fonts/rodin-pixel.ttf') format('truetype');
+    font-weight: bold;
+}
+
+body {
+    font-family: 'Rodin', sans-serif;
+    background: linear-gradient(to bottom, #1A89E3, #031EAC);;
+    color: #69FDFD; /* Agar teks terlihat jelas */
+    text-align: center; /* Pusatkan teks */
+    height: 100vh; /* Pastikan background mengisi seluruh layar */
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+img {
+    width: 48%;  /* Tiap gambar 45% dari lebar layar */
+    height: auto; /* Menjaga aspek rasio */
+    margin: 5px;
+    max-width: 1440px;
+}
+
+.miring {
+    display: inline-block; /* Agar rotasi bekerja dengan baik */
+    transform: rotate(-3deg); /* Miringkan teks 30° */
+    font-family: 'Rodin', sans-serif;
+    color: #69FDFD; /* Agar teks terlihat jelas */
+    line-height: 0.1; /* Mengurangi jarak antar baris */
+}
+.miring2 {
+    display: inline-block; /* Agar rotasi bekerja dengan baik */
+    transform: rotate(-2deg); /* Miringkan teks 30° */
+    font-family: 'Rodin', sans-serif;
+    color: #69FDFD; /* Agar teks terlihat jelas */
+    line-height: 0.1;
+}
+.miring3 {
+    display: inline-block; /* Agar rotasi bekerja dengan baik */
+    transform: rotate(2deg); /* Miringkan teks 30° */
+    font-family: 'Rodin', sans-serif;
+    color: #69FDFD; /* Agar teks terlihat jelas */
+    line-height: 0.1;
+}
