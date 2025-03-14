@@ -13,12 +13,28 @@ body {
     margin: 0;
 }
 
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+@keyframes fall-in {
+    0% {
+        transform: translateY(-100vh); /* Mulai dari luar layar atas */
+        opacity: 0; /* Tak terlihat */
+    }
+    80% {
+        transform: translateY(10px); /* Efek jatuh ke bawah sedikit */
+        opacity: 1; /* Muncul */
+    }
+    100% {
+        transform: translateY(0); /* Posisi normal */
+    }
 }
 
+
+.container {
+    display: flex; /* Susun gambar secara horizontal */
+    justify-content: center; /* Tengahkan gambar */
+    gap: 20px; /* Jarak antar gambar */
+    flex-wrap: wrap; /* Jika layar kecil, gambar turun ke bawah */
+    
+}
 
 .miring {
     display: inline-block; /* Agar rotasi bekerja dengan baik */
@@ -42,7 +58,6 @@ body {
     line-height: 0.1;
 }
 
-
 @keyframes floating {
     0% { transform: translateY(0px) rotate(0deg); }
     25% { transform: translateY(-10px) rotate(-2deg); }
@@ -55,24 +70,23 @@ body {
 h1 {
     display: inline-block;
     animation: floating 5s ease-in-out infinite;
+    position: relative; /* Agar z-index bekerja */
+    transition: transform 0.3s ease-in-out, z-index 0.3s;
+    z-index: 1; /* Nilai awal lebih rendah */
+    will-change: transform; /* Optimasi animasi */
+    text-shadow: 2px 2px 10px rgba(20, 20, 20, 0.5); /* Shadow biru muda */
 }
 
 h1:hover {
-    color: #FB0300; /* Warna berubah menjadi emas */
-    transform: scale(1.1); /* Memperbesar sedikit */
+    animation: none;
+    color: #FB0300; 
+    transform: scale(1.7) rotate(2deg); /* Memperbesar sedikit */
     transition: all 0.3s ease-in-out;
 }
 
 /* Beri timing (delay) berbeda untuk setiap teks */
-h1:nth-child(1) { animation-delay: 3.5s; }
-h1:nth-child(2) { animation-delay: 3s; }
-h1:nth-child(3) { animation-delay: 4s; }
-h1:nth-child(4) { animation-delay: 3s; }
-h1:nth-child(5) { animation-delay: 2s; }
-
-/* Variasi arah gerakan */
-h1:nth-child(odd) { transform: rotate(3deg); } /* Yang ganjil miring ke kanan */
-h1:nth-child(even) { transform: rotate(-3deg); } /* Yang genap miring ke kiri */
+h1:nth-child(1) { animation-delay: 100ms; }
+h1:nth-child(2) { animation-delay: 200ms; }
 
 @keyframes wave {
     0% { transform: translateY(0px) rotate(0deg); }
@@ -82,23 +96,33 @@ h1:nth-child(even) { transform: rotate(-3deg); } /* Yang genap miring ke kiri */
     100% { transform: translateY(0px) rotate(0deg); }
 }
 
-/* Terapkan animasi ke semua gambar */
 img {
-    width: 48%;  /* Ukuran tetap */
-    height: auto; 
+    width: 100%;
+    height: auto;
     margin: 5px;
     max-width: 1440px;
     animation: wave 6s ease-in-out infinite;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* Tambahkan shadow */
-    border-radius: 10px; /* Opsional: Membuat sudut sedikit melengkung */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    will-change: transform;
 }
 
 img:hover {
-    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.7);
-    transform: scale(1.05) !important; /* Paksa gambar untuk membesar */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 15px 15px 25px rgb(0, 203, 243), 15px 15px 25px rgba(0, 0, 0, 0.7);
+    transform: scale(1.05);
 }
 
-/* Berikan variasi delay agar tidak bergerak bersamaan */
-img:nth-child(1) { animation-delay: 2s; }
-img:nth-child(2) { animation-delay: 1s; }
+.image-clickable {
+    position: relative;
+    min-width: unset;
+    max-width: 610px;
+    min-height: 370px;
+    z-index: 1;
+}
+
+.image-clickable:hover {
+    transform: scale(1.1) rotate(2deg);
+    z-index: 999; /* Pastikan muncul di atas semua elemen lain */
+}
+
